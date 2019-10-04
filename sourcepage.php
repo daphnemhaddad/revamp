@@ -10,9 +10,15 @@
 		<!-- <img src="images/parachutes.jpg" class="cover"> -->
 	</div>
 
-	<nav class="navi site">
-   <a href="Disco.php">Home</a>
-  </nav>
+   <?php
+   $file = './includes/nav.php';
+   if (file_exists($file) && is_readable($file)) {
+       require $file;
+   } else {
+       throw new Exception("$file can't be found");
+   }
+   ?>
+	
 	<table class="SongList">
       <caption>
       Sources

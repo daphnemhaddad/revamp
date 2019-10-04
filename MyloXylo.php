@@ -10,7 +10,14 @@
 		<img src="images/mylox.jpg" class="cover">
 	</div>
 
-<?php include './includes/nav.php' ?>
+   <?php
+   $file = './includes/nav.php';
+   if (file_exists($file) && is_readable($file)) {
+       require $file;
+   } else {
+       throw new Exception("$file can't be found");
+   }
+   ?>
 
 	<table class="SongList">
       <caption>
