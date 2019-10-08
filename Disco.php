@@ -1,3 +1,33 @@
+<?php 
+//	include './includes/title.php'; 
+	$errors = [];
+	$missing = [];
+// check if the form has been submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	// email processing script
+	$to = 'daphnemhaddad@gmail.com';
+	$subject = 'Feedback from Coldplay';
+    // list expected fields
+    $expected = ['name', 'address', 'birthday', 'email', 'comments', 'terms'];
+    $required = ['name', 'address', 'birthday', 'email', 'comments', 'terms'];
+    // set default values for variables that might not exist
+    if (!isset($_POST['terms'])) {
+        $_POST['terms'] = '';
+        $errors['terms'] = true;
+    }
+    // create additional headers
+	$header[] = 'From: Coldplay<feedback@example.com>';
+    $headers[] = 'Content-Type: text/plain; charset=utf-8';
+    require './includes/processmail.php';
+    if ($mailSent) {
+		header('Location: http://site46.wdd.francistuttle.edu/revamp/thank_you.php');
+//		header('Location: http:/localhost/revamp/thank_you.php');
+
+        exit;
+    }
+	
+}
+?>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
